@@ -1,0 +1,24 @@
+<template>
+  <q-layout view="lHh Lpr lFf">
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script>
+
+export default {
+  name: 'MainLayout',
+  components: { },
+  data() {
+    return {
+      toggle1: true,
+      toggle2: false,
+      leftDrawerOpen: false,
+
+    };
+  },
+};
+</script>
