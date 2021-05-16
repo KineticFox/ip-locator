@@ -79,17 +79,18 @@ export default {
       lat: '',
       lng: '',
       size: 4,
-      pointLabel: 'location',
+      // pointLabel: 'location',
     }];
 
-    data.lat = this.lat;
-    data.lng = this.lon;
+    data[0].lat = this.lat;
+    data[0].lng = this.lon;
 
     const myglobe = Globe();
     myglobe.width(container.offsetWidth);
     myglobe.height(container.offsetHeight);
     myglobe.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg');
-    myglobe(container).pointsData(data).pointLabel('pointLabel');
+    myglobe(container).pointsData(data);
+    myglobe.pointsData(data);
   },
   methods: {
     three() {

@@ -1,6 +1,7 @@
-# Ip-location tracker (tracker)
+# Ip-location tracker 
 
-A Quasar Framework app
+A Quasar Framework app to locate any given IP/Domain.
+Based on [IP Stack API](https://ipstack.com/product) and the [globe.gl Framework](https://github.com/vasturiano/globe.gl)
 
 ## Install the dependencies
 ```bash
@@ -20,7 +21,6 @@ npm run lint
 ### Build the app for production
 ```bash
 quasar build
+quasar build -m electron
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v1.quasar.dev/quasar-cli/quasar-conf-js).

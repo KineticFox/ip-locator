@@ -23,10 +23,9 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
     >
         <div class="q-pa-md">
-          <q-btn color="purple" label="Account Settings">
+          <q-btn class="fit" color="green" label="Account Settings" icon="settings">
             <q-menu>
               <div class="row no-wrap q-pa-md">
                 <div class="column">
@@ -61,22 +60,25 @@
             </q-menu>
           </q-btn>
 
-          <q-card >
+          <q-card class="q-ma-md fixed-bottom">
             <q-card-section>
-              nur ein paar Infos
+              <p>You can use this App by registering for an free api key at</p>
+              <a href="https://ipstack.com/product">ipstack</a>
+              <br>
+              <p>version 1.0.0</p>
             </q-card-section>
           </q-card>
         </div>
 
     </q-drawer>
 
-    <div column >
+    <div row >
       <div class="q-pa-md">
         <h1>IP-Locator</h1>
       </div>
       <div class="q-pa-md row no-wrap items-center ">
         <div id="scene" ref="sc">
-
+          <p>if u can see this the gloge.gl isn't working!</p>
         </div>
         <!-- threeJS :lat="latitude" :lon="longitude"/-->
       </div>
@@ -90,7 +92,7 @@
       </div>
       <div class="q-pa-md row no-wrap items-center">
         <div class="q-pa-md" >
-          <q-markup-table flat bordered>
+          <q-markup-table flat bordered dark>
             <thead class="bg-teal">
               <tr>
                 <th colspan="7">
@@ -107,7 +109,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-grey-3">
+            <tbody >
               <tr>
                 <th class="text-left">IP</th>
                 <th class="text-right">type (ipv4/ipv6)</th>
@@ -143,7 +145,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { Notify } from 'quasar';
-import Three from 'components/three.vue';
 import Globe from 'globe.gl';
 
 const ipstack = require('ipstack');
@@ -154,8 +155,9 @@ const myglobe = Globe();
 const gdata = [{
   lat: 0,
   lng: 0,
-  size: 4,
-  pointLabel: 'location',
+  size: 0.5,
+  color: '#fc0303',
+  name: '',
 }];
 
 let container = {};
@@ -163,15 +165,21 @@ let container = {};
 function renderGlobe(con, dat) {
   myglobe.width(container.offsetWidth);
   myglobe.height(container.offsetHeight);
-  myglobe.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg');
-  // myglobe(container).pointsData(gdata).pointLabel('pointLabel');
+  myglobe.globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg');
   myglobe(con);
-  myglobe(con).pointsData(dat);
+  myglobe(con).pointsData(dat).pointColor('color').pointLabel('name')
+    .pointAltitude(0)
+    .pointRadius(0.75);
+  /* myglobe(con).labelsData(dat).labelLat('lat').labelLng('lon')
+    .labelText('text')
+    .labelSize('size')
+    .labelDotRadius('size')
+    .labelResolution(2); */
 }
 
 export default {
   name: 'PageIndex',
-  // bundesland: bloc,
+
   data() {
     return {
       toggle1: true,
@@ -200,7 +208,7 @@ export default {
   },
   components: {
     // eslint-disable-next-line global-require
-    threeJS: require('components/three.vue').default,
+    // threeJS: require('components/three.vue').default,
   },
 
   mounted() {
@@ -267,7 +275,7 @@ export default {
           container = this.$refs.sc;
           gdata[0].lat = this.latitude;
           gdata[0].lng = this.longitude;
-          // renderGlobe(container, gdata);
+          gdata[0].name = this.city;
           myglobe.pointsData(gdata);
         });
       } else {
