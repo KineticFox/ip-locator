@@ -4,7 +4,7 @@ A Quasar Framework app to locate any given IP/Domain.
 Based on [IP Stack API](https://ipstack.com/product) and the [globe.gl Framework](https://github.com/vasturiano/globe.gl)
 
 You can downlaod a Electron app already for Linux [here](https://github.com/KineticFox/ip-locator/releases/tag/v1.0.0)
-or you can visit the ongithub hosted [page](kineticfox.github.io)
+or you can visit the ongithub hosted [page](https://kineticfox.github.io)
 
 example:
 ![alt text](res/example1.png)
