@@ -73,6 +73,9 @@
     </q-drawer>
 
     <div row >
+      <div>
+        <cveNews/>
+      </div>
       <div class="q-pa-md">
         <h1>IP-Locator</h1>
       </div>
@@ -209,11 +212,13 @@ export default {
   components: {
     // eslint-disable-next-line global-require
     // threeJS: require('components/three.vue').default,
+    // eslint-disable-next-line global-require
+    cveNews: require('components/cve.vue').default,
   },
 
   mounted() {
     container = this.$refs.sc;
-    renderGlobe(container, gdata);
+    // renderGlobe(container, gdata);
   },
 
   methods: {
